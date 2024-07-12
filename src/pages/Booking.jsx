@@ -1,12 +1,10 @@
-// booking.js
-
-// Import necessary modules
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import axios from 'axios';
-import backgroundImage from '../assets/services/wedding_image.png';
+import emailjs from 'emailjs-com';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import backgroundImage from '../assets/services/wedding_image.png'; // Adjust the path accordingly
 
-// Define the BookingForm component
 const BookingForm = () => {
   const form = useRef();
 
@@ -16,34 +14,44 @@ const BookingForm = () => {
     const formData = new FormData(form.current);
 
     const data = {
-      from: {
-        email: formData.get("customer-email"),
-        name: "Deep Catering & Events"
-      },
-      to: [
-        {
-          email: "coderdecodersolutions@gmail.com", // Replace with the recipient email
-          name: "Recipient Name"
-        }
-      ],
-      subject: "New Booking Request",
-      html: `
-        <h2>New Booking Request</h2>
-        <p><strong>Customer's Name:</strong> ${formData.get("customer's-name")}</p>
-        <p><strong>Phone Number:</strong> ${formData.get("phone-number")}</p>
-        <p><strong>Booking Date:</strong> ${formData.get("booking-date")}</p>
-        <p><strong>Function Date:</strong> ${formData.get("function-date")}</p>
-        <p><strong>Palace:</strong> ${formData.get("palace")}</p>
-        <p><strong>Members:</strong> ${formData.get("members")}</p>
-      `
+      from_name: formData.get("customer-name"),
+      from_email: formData.get("customer-email"),
+      phone_number: formData.get("phone-number"),
+      booking_date: formData.get("booking-date"),
+      function_date: formData.get("function-date"),
+      palace: formData.get("palace"),
+      members: formData.get("members"),
     };
 
     try {
-      await axios.post('http://localhost:3001/send-email', data);
-      alert('Message sent successfully!');
+      // Send email using emailjs
+      await emailjs.send('service_npavkes', 'template_wliif7j', data, "ANlmnkhJtKMonPp4V");
+      
+      // Show success toast
+      toast.success('Your details are submitted successfully and we will contact you very soon');
+
+      // Construct WhatsApp message
+      const whatsappMessage = `
+        New Booking Request:
+        Name: ${data.from_name}
+        Email: ${data.from_email}
+        Phone: ${data.phone_number}
+        Booking Date: ${data.booking_date}
+        Function Date: ${data.function_date}
+        Palace: ${data.palace}
+        Members: ${data.members}
+      `.trim();
+
+      // Replace with your WhatsApp number
+      const whatsappNumber = '7087963595'; // Example: '1234567890'
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+
     } catch (error) {
       console.error(error);
-      alert('Failed to send the message. Please try again.');
+      toast.error('Failed to send the message. Please try again.');
     }
   };
 
@@ -127,52 +135,9 @@ const BookingForm = () => {
           </motion.button>
         </div>
       </form>
+      <ToastContainer />
     </motion.div>
   );
 };
 
 export default BookingForm;
-
-
-if (typeof require !== 'undefined' && require.main === module) {
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  const cors = require('cors');
-  const { MailerSend, Recipient, EmailParams } = require('mailersend');
-  const app = express();
-  const port = 3001;
-
-  app.use(bodyParser.json());
-  app.use(cors());
-
-  app.post('/send-email', async (req, res) => {
-    try {
-      const { from, to, subject, html } = req.body;
-
-      const mailersend = new MailerSend({
-        apiKey: "mlsn.56f48a6abe1cce6387c0349b75e5a5aa07faeb23d046bcfdbb053b39979fdc66" // Replace with your Mailersend API key
-      });
-
-      const recipients = to.map((recipient) => new Recipient(recipient.email, recipient.name));
-
-      const emailParams = new EmailParams()
-        .setFrom(from.email)
-        .setFromName(from.name)
-        .setRecipients(recipients)
-        .setSubject(subject)
-        .setHtml(html)
-        .setText(html.replace(/<[^>]+>/g, ''));
-
-      await mailersend.send(emailParams);
-
-      res.status(200).json({ message: 'Email sent successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ error: 'Failed to send the message' });
-    }
-  });
-
-  app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
-  });
-}
