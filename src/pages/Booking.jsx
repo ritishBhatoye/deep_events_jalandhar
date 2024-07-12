@@ -138,7 +138,7 @@ if (typeof require !== 'undefined' && require.main === module) {
   const express = require('express');
   const bodyParser = require('body-parser');
   const cors = require('cors');
-  const axios = require('axios');
+  const { MailerSend, Recipient, EmailParams } = require('mailersend');
   const app = express();
   const port = 3001;
 
@@ -147,13 +147,25 @@ if (typeof require !== 'undefined' && require.main === module) {
 
   app.post('/send-email', async (req, res) => {
     try {
-      const response = await axios.post('https://api.mailersend.com/v1/email', req.body, {
-        headers: {
-          'Authorization': `mlsn.56f48a6abe1cce6387c0349b75e5a5aa07faeb23d046bcfdbb053b39979fdc66`, // Replace with your Mailersend API key
-          'Content-Type': 'application/json'
-        }
+      const { from, to, subject, html } = req.body;
+
+      const mailersend = new MailerSend({
+        apiKey: "mlsn.56f48a6abe1cce6387c0349b75e5a5aa07faeb23d046bcfdbb053b39979fdc66" // Replace with your Mailersend API key
       });
-      res.status(200).json(response.data);
+
+      const recipients = to.map((recipient) => new Recipient(recipient.email, recipient.name));
+
+      const emailParams = new EmailParams()
+        .setFrom(from.email)
+        .setFromName(from.name)
+        .setRecipients(recipients)
+        .setSubject(subject)
+        .setHtml(html)
+        .setText(html.replace(/<[^>]+>/g, ''));
+
+      await mailersend.send(emailParams);
+
+      res.status(200).json({ message: 'Email sent successfully' });
     } catch (error) {
       console.error(error);
       res.status(500).json({ error: 'Failed to send the message' });
