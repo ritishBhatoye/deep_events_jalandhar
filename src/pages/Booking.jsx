@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import backgroundImage from '../assets/services/wedding_image.png'; // Adjust the path accordingly
+import backgroundImage from '../assets/services/wedding_image.png'; 
 
 const BookingForm = () => {
   const form = useRef();
