@@ -12,7 +12,7 @@ import event1 from '../../assets/events/Event-1.MP4';
 import event2 from '../../assets/events/EVENT-2.MP4'; 
 import event3 from '../../assets/events/EVENT-3.MP4'; 
 import event4 from '../../assets/events/EVENT-4.MP4'; 
-import event5 from '../../assets/events/EVENT-5.MP4'; x
+import event5 from '../../assets/events/EVENT-5.MP4'; 
 
 
 const images = [ourStory, ourStory1, ourStory2, ourStory3, ourStory4];
