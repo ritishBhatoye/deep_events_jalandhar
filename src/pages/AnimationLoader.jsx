@@ -38,19 +38,19 @@ const LoadingAnimation = ({ onLoaded }) => {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 2 }}  // Increased transition duration
+      transition={{ duration: 2.5 }}  // Increased transition duration
       className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-black to-gray-900"
       style={{ zIndex: 50 }}
     >
       <Canvas>
-        <ambientLight intensity={0.5} />
+        <ambientLight intensity={0.25} />
         <pointLight position={[10, 10, 10]} />
         <Logo />
         <Html center>
           <motion.img
             src={logo}
             alt="Deep Catering & Events Jalandhar"
-            className="w-64 h-64"  // Increased size of the logo
+            className="w-56 h-56"  // Increased size of the logo
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 4, ease: 'easeOut' }}  // Increased transition duration

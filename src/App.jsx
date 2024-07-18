@@ -1,6 +1,6 @@
 // src/App.js
-import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import AboutUs from './pages/AboutUs';
 import Services from './pages/Services';
@@ -27,12 +27,16 @@ import Drinks from './components/menu/Drinks';
 import Footer from './components/home/Footer';
 import LoadingAnimation from './pages/AnimationLoader';
 
-
-const App = () => {
+const AppContent = () => {
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    setIsLoading(true);
+  }, [location]);
+
   return (
-    <Router>
+    <>
       {isLoading && <LoadingAnimation onLoaded={() => setIsLoading(false)} />}
       {!isLoading && (
         <>
@@ -65,6 +69,14 @@ const App = () => {
           <Footer />
         </>
       )}
+    </>
+  );
+};
+
+const App = () => {
+  return (
+    <Router>
+      <AppContent />
     </Router>
   );
 };
