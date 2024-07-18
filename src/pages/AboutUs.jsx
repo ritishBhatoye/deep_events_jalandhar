@@ -4,6 +4,8 @@ import OurStory from '../components/aboutus/ourStory';
 import SpecialEvent from '../components/aboutus/specialEvent';
 import BestParties from '../components/aboutus/bestParties';
 
+
+import HeroSections from '../components/aboutus/HeroSections';
 const AboutUs = () => {
   const [loadedSections, setLoadedSections] = useState({
     ourStory: false,
@@ -11,11 +13,18 @@ const AboutUs = () => {
     bestParties: false,
   });
 
+  const [scrollDirection, setScrollDirection] = useState(null);
+  const lastScrollTop = useRef(0);
+
   const ourStoryRef = useRef();
+  const hereSections = useRef();
+
   const specialEventRef = useRef();
   const bestPartiesRef = useRef();
 
   const controlsOurStory = useAnimation();
+  const controlsHeroSection = useAnimation();
+
   const controlsSpecialEvent = useAnimation();
   const controlsBestParties = useAnimation();
 
@@ -23,21 +32,46 @@ const AboutUs = () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const target = entry.target;
+        const animation = { opacity: 1, y: 0 };
+
+        if (scrollDirection === 'up') {
+          animation.y = -50;
+        } else if (scrollDirection === 'down') {
+          animation.y = 50;
+        }
+
         if (target.id === 'ourStory' && !loadedSections.ourStory) {
           setLoadedSections(prev => ({ ...prev, ourStory: true }));
-          controlsOurStory.start({ opacity: 1, y: 0 });
+          controlsOurStory.start(animation);
         }
         if (target.id === 'specialEvent' && !loadedSections.specialEvent) {
           setLoadedSections(prev => ({ ...prev, specialEvent: true }));
-          controlsSpecialEvent.start({ opacity: 1, y: 0 });
+          controlsSpecialEvent.start(animation);
         }
         if (target.id === 'bestParties' && !loadedSections.bestParties) {
           setLoadedSections(prev => ({ ...prev, bestParties: true }));
-          controlsBestParties.start({ opacity: 1, y: 0 });
+          controlsBestParties.start(animation);
         }
       }
     });
   };
+
+  useEffect(() => {
+    const handleScrollDirection = () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop.current) {
+        setScrollDirection('down');
+      } else {
+        setScrollDirection('up');
+      }
+      lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+    };
+
+    window.addEventListener('scroll', handleScrollDirection);
+    return () => {
+      window.removeEventListener('scroll', handleScrollDirection);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(handleScroll, { threshold: 0.1 });
@@ -67,12 +101,16 @@ const AboutUs = () => {
 
   return (
     <div>
+        
+    
+        <HeroSections />
+
       <motion.div
         ref={ourStoryRef}
         id="ourStory"
         initial={{ opacity: 0, y: 50 }}
         animate={controlsOurStory}
-        transition={{ duration: 1.8 }}
+        transition={{ duration: 1.5 }}
       >
         <OurStory />
       </motion.div>
@@ -81,7 +119,7 @@ const AboutUs = () => {
         id="specialEvent"
         initial={{ opacity: 0, y: 50 }}
         animate={controlsSpecialEvent}
-        transition={{ duration: 1.8 }}
+        transition={{ duration: 1.5 }}
       >
         <SpecialEvent />
       </motion.div>
@@ -90,7 +128,7 @@ const AboutUs = () => {
         id="bestParties"
         initial={{ opacity: 0, y: 50 }}
         animate={controlsBestParties}
-        transition={{ duration: 1.8 }}
+        transition={{ duration: 1.5 }}
       >
         <BestParties />
       </motion.div>

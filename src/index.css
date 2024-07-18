@@ -8,6 +8,9 @@
   font-family: "Montserrat", sans-serif;
   color-scheme: dark;
 }
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
 .icon-white {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%);
 }

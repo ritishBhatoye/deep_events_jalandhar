@@ -25,6 +25,7 @@ import Lunch_dinner_veg from './components/menu/lunch_dinner_veg';
 // import Breakfast_nonveg from './components/menu/breakfast_nonveg';
 import Menu from './pages/Menu';
 import Drinks from './components/menu/Drinks';
+import Footer from './components/home/Footer';
 
 
 const App = () => {
@@ -58,6 +59,7 @@ const App = () => {
         <Route path="/menu/lunch-dinner/veg" element={<Lunch_dinner_veg/>} />
         {/* <Route path="/menu/Breakfast_nonveg" element={<Breakfast_nonveg />} /> */}
       </Routes>
+      <Footer />
     </Router>
   );
 };

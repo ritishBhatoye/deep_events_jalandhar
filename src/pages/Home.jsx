@@ -29,7 +29,7 @@ const Home = () => {
           ref={carouselRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: carouselInView ? 1 : 0, y: carouselInView ? 0 : 20 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.75 }}
         >
           <Carousel />
         </motion.div>
@@ -37,24 +37,17 @@ const Home = () => {
           ref={aboutUsRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: aboutUsInView ? 1 : 0, y: aboutUsInView ? 0 : 20 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.75 }}
         >
           <AboutUs />
         </motion.div>
-        <div className='max-w-7xl mx-auto pt-20 px-6'>
-          <motion.div
-            ref={heroSectionRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: heroSectionInView ? 1 : 0, y: heroSectionInView ? 0 : 20 }}
-            transition={{ duration: 1 }}
-          >
-            <HeroSection />
-          </motion.div>
+        <div className='max-w-7xl  mx-auto pt-8 '>
+
           <motion.div
             ref={featureSectionRef}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: featureSectionInView ? 1 : 0, y: featureSectionInView ? 0 : 20 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.75 }}
           >
             <FeatureSection />
           </motion.div>
@@ -62,18 +55,11 @@ const Home = () => {
             ref={servicesSectionRef}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: servicesSectionInView ? 1 : 0, y: servicesSectionInView ? 0 : 20 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.75 }}
           >
             <ServicesSection />
           </motion.div>
-          <motion.div
-            ref={pricingRef}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: pricingInView ? 1 : 0, y: pricingInView ? 0 : 20 }}
-            transition={{ duration: 1 }}
-          >
-            <Pricing />
-          </motion.div>
+
           <motion.div
             ref={testimonialsRef}
             initial={{ opacity: 0, y: 20 }}
@@ -82,8 +68,9 @@ const Home = () => {
           >
             <Testimonials />
           </motion.div>
-          <Footer />
+ 
         </div>
+      
       </>
     );
   };

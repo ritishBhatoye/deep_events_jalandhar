@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { motion } from 'framer-motion';
-import event1 from '../../assets/events/Event-1.MP4'; 
-import event2 from '../../assets/events/EVENT-2.MP4'; 
-import event3 from '../../assets/events/EVENT-3.MP4'; 
-import event4 from '../../assets/events/EVENT-4.MP4'; 
-import event5 from '../../assets/events/EVENT-5.MP4'; 
-import event6 from '../../assets/events/EVENT-6.MP4'; 
-import event7 from '../../assets/events/EVENT-7.MP4'; 
-import event8 from '../../assets/events/EVENT-8.MP4'; 
-import event9 from '../../assets/events/EVENT-9.MP4'; 
-import event10 from '../../assets/events/EVENT-10.MP4'; 
-import event11 from '../../assets/events/EVENT-11.MP4'; 
-import event12 from '../../assets/events/EVENT-12.MP4'; 
-import event13 from '../../assets/events/EVENT-13.MP4'; 
-import event14 from '../../assets/events/EVENT-14.MP4'; 
-import event15 from '../../assets/events/EVENT-15.MP4'; 
-import event16 from '../../assets/events/EVENT-16.MP4'; 
+import event1 from '../../assets/events/Event-1.MP4';
+import event2 from '../../assets/events/EVENT-2.MP4';
+import event3 from '../../assets/events/EVENT-3.MP4';
+import event4 from '../../assets/events/EVENT-4.MP4';
+import event5 from '../../assets/events/EVENT-5.MP4';
+import event6 from '../../assets/events/EVENT-6.MP4';
+import event7 from '../../assets/events/EVENT-7.MP4';
+import event8 from '../../assets/events/EVENT-8.MP4';
+import event9 from '../../assets/events/EVENT-9.MP4';
+import event10 from '../../assets/events/EVENT-10.MP4';
+import event11 from '../../assets/events/EVENT-11.MP4';
+import event12 from '../../assets/events/EVENT-12.MP4';
+import event13 from '../../assets/events/EVENT-13.MP4';
+import event14 from '../../assets/events/EVENT-14.MP4';
+import event15 from '../../assets/events/EVENT-15.MP4';
+import event16 from '../../assets/events/EVENT-16.MP4';
 
 const videos = [
   event1, event2, event3, event4, event5, event6, event7, event8,
@@ -24,8 +24,8 @@ const videos = [
 ];
 
 const quotes = [
-  "Creating memories that last a lifetime", 
-  "Where every detail matters", 
+  "Creating memories that last a lifetime",
+  "Where every detail matters",
   "Turning your dreams into reality",
   "Exceeding expectations, every time",
   "Crafting experiences, one event at a time",
@@ -41,6 +41,7 @@ const BestParties = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(null);
   const [showMore, setShowMore] = useState(false);
+  const [isLandscape, setIsLandscape] = useState(true);
 
   const openModal = (video) => {
     setCurrentVideo(video);
@@ -50,6 +51,10 @@ const BestParties = () => {
   const closeModal = () => {
     setModalIsOpen(false);
     setCurrentVideo(null);
+  };
+
+  const toggleOrientation = () => {
+    setIsLandscape(!isLandscape);
   };
 
   const visibleVideos = showMore ? videos : videos.slice(0, 8);
@@ -65,7 +70,7 @@ const BestParties = () => {
           </p>
         </div>
       </div>
-      <motion.div 
+      <motion.div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -121,16 +126,35 @@ const BestParties = () => {
         onRequestClose={closeModal}
         className="fixed inset-0 flex items-center justify-center"
         overlayClassName="fixed inset-0 bg-black bg-opacity-75"
+        contentLabel="Video Modal"
       >
-        <div className="bg-white rounded-lg p-4 max-w-lg w-full max-h-full overflow-auto">
-          <video src={currentVideo} controls className="w-full h-auto" />
+        <motion.div
+          className="bg-white rounded-lg p-4 max-w-lg w-full h-auto overflow-auto"
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 50 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className={`relative ${isLandscape ? 'w-full' : 'h-full'}`}>
+            <video
+              src={currentVideo}
+              controls
+              className={`object-cover ${isLandscape ? 'w-full h-64' : 'h-full w-64'}`}
+            />
+            <button
+              onClick={toggleOrientation}
+              className="absolute top-2 right-2 bg-blue-500 text-white py-2 px-4 rounded"
+            >
+              {isLandscape ? 'Portrait' : 'Landscape'}
+            </button>
+          </div>
           <button
             onClick={closeModal}
             className="mt-4 bg-red-500 text-white py-2 px-4 rounded"
           >
             Close
           </button>
-        </div>
+        </motion.div>
       </Modal>
     </section>
   );
