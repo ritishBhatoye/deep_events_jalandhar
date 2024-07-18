@@ -12,6 +12,7 @@
   "dependencies": {
     "@fonoster/sdk": "^0.4.13",
     "@heroicons/react": "^1.0.6",
+    "@react-three/drei": "^9.108.4",
     "animejs": "^3.2.2",
     "aws-sdk": "^2.1659.0",
     "axios": "^1.7.2",
@@ -36,6 +37,7 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.24.1",
     "react-scroll": "^1.9.0",
+    "react-three-fiber": "^6.0.13",
     "react-toastify": "^10.0.5",
     "react-type-animation": "^3.2.0",
     "three": "^0.166.1"
