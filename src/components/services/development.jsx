@@ -1,89 +1,65 @@
-// src/components/DevelopmentSection.jsx
+// src/components/services/development.jsx
 
-import React, { Suspense, lazy } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHome, FaBuilding, FaIndustry } from 'react-icons/fa';
+import { FaGlassCheers, FaCalendarAlt, FaUtensils } from 'react-icons/fa';
 
-const ResidentialDevelopment = () => (
-  <div className="bg-gradient-to-r from-orange-500 to-orange-800 shadow-lg rounded-lg overflow-hidden p-6 text-white">
-    <div className="flex items-center justify-center mb-4">
-      <FaHome className="h-10 w-10 text-white" />
+const EventCard = ({ icon: Icon, title, description }) => (
+  <div className="bg-gradient-to-r from-orange-500 to-orange-800 shadow-lg rounded-lg overflow-hidden p-4 sm:p-6 text-white">
+    <div className="flex items-center justify-center mb-3 sm:mb-4">
+      <Icon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 text-white" aria-hidden="true" />
     </div>
-    <h3 className="text-lg font-medium">RESIDENTIAL DEVELOPMENT</h3>
-    <p className="mt-2 text-base">Magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet sed quia.</p>
-    <div className="mt-4">
-      <a href="#" className="text-white underline hover:text-gray-300">Learn more</a>
+    <h3 className="text-sm sm:text-base md:text-lg font-medium">{title}</h3>
+    <p className="mt-2 text-xs sm:text-sm md:text-base font-light">{description}</p>
+    <div className="mt-3 sm:mt-4">
+      <a href="#" className="text-xs sm:text-sm md:text-base text-white underline hover:text-gray-300">Learn more</a>
     </div>
   </div>
 );
 
-const CommercialDevelopment = () => (
-  <div className="bg-gradient-to-r from-orange-500 to-orange-800 shadow-lg rounded-lg overflow-hidden p-6 text-white">
-    <div className="flex items-center justify-center mb-4">
-      <FaBuilding className="h-10 w-10 text-white" />
-    </div>
-    <h3 className="text-lg font-medium">COMMERCIAL DEVELOPMENT</h3>
-    <p className="mt-2 text-base">Magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet sed quia.</p>
-    <div className="mt-4">
-      <a href="#" className="text-white underline hover:text-gray-300">Learn more</a>
-    </div>
-  </div>
-);
-
-const IndustrialDevelopment = () => (
-  <div className="bg-gradient-to-r from-orange-500 to-orange-800 shadow-lg rounded-lg overflow-hidden p-6 text-white">
-    <div className="flex items-center justify-center mb-4">
-      <FaIndustry className="h-10 w-10 text-white" />
-    </div>
-    <h3 className="text-lg font-medium">INDUSTRIAL DEVELOPMENT</h3>
-    <p className="mt-2 text-base">Magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet sed quia.</p>
-    <div className="mt-4">
-      <a href="#" className="text-white underline hover:text-gray-300">Learn more</a>
-    </div>
-  </div>
-);
-
-const DevelopmentSection = () => {
-  const sections = [
+const EventServicesSection = () => {
+  const services = [
     {
-      component: <ResidentialDevelopment />,
+      icon: FaGlassCheers,
+      title: "EVENT PLANNING",
+      description: "From intimate gatherings to grand galas, we craft unforgettable experiences tailored to your vision and budget."
     },
     {
-      component: <CommercialDevelopment />,
+      icon: FaCalendarAlt,
+      title: "EVENT ORGANIZING",
+      description: "Our expert team handles every detail, ensuring your event runs smoothly from concept to execution."
     },
     {
-      component: <IndustrialDevelopment />,
+      icon: FaUtensils,
+      title: "CATERING SERVICES",
+      description: "Delight your guests with our exquisite cuisine, featuring a diverse menu of flavors to suit any palate or dietary need."
     },
   ];
 
   return (
-    <div className="py-12">
+    <section className="py-8 sm:py-12 lg:py-16" aria-labelledby="event-services-title">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h2 className="text-base font-semibold text-gray-100 tracking-wide uppercase">What We Do</h2>
-          <p className="mt-1 text-4xl font-extrabold text-gray-200 sm:text-5xl sm:tracking-tight lg:text-6xl">
-            Creating a great tomorrow for everyone
+        <header className="text-center mb-8 sm:mb-10 lg:mb-12">
+          <h2 id="event-services-title" className="text-xs sm:text-sm md:text-base font-semibold text-gray-100 tracking-wide uppercase">Our Services</h2>
+          <p className="mt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-200 sm:tracking-tight">
+            Crafting Memorable Moments for Every Occasion
           </p>
-        </div>
-        <div className="mt-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {sections.map((section, index) => (
-              <motion.div
-                key={index}
-                className="shadow-lg rounded-lg overflow-hidden"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Suspense fallback={<div>Loading...</div>}>
-                  {section.component}
-                </Suspense>
-              </motion.div>
-            ))}
-          </div>
+        </header>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              className="shadow-lg rounded-lg overflow-hidden"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <EventCard {...service} />
+            </motion.div>
+          ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default DevelopmentSection;
+export default EventServicesSection;

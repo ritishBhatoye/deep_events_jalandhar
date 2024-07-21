@@ -53,18 +53,20 @@ const Navbar = () => {
   };
 
   return (
-    <>
-      <nav className='sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80'>
-        <div className='container px-4 mx-auto relative text-sm'>
-          <div className='flex justify-between items-center'>
-            <div className='flex items-center flex-shrink-0'>
-              <img className='h-auto w-20 mr-2' src={logo} alt="logo" />
-              <span className='text-l tracking-tight'>
-                {/* DEEP EVENT JALANDHAR */}
-              </span>
+    <header className="sticky top-0 z-50 w-full">
+      <nav className="py-3 backdrop-blur-lg border-b border-neutral-700/80" aria-label="Main navigation">
+        <div className="container px-4 mx-auto relative text-sm">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center flex-shrink-0">
+              <Link to="/" className="flex items-center">
+                <img className="h-auto w-16 sm:w-20 mr-2" src={logo} alt="Deep Event Jalandhar Logo" />
+                <span className="text-lg sm:text-xl font-semibold tracking-tight sr-only">
+                  Deep Event Jalandhar
+                </span>
+              </Link>
             </div>
             
-            <ul className='hidden lg:flex ml-14 space-x-12'>
+            <ul className="hidden md:flex ml-4 lg:ml-14 space-x-4 lg:space-x-12">
               {navItems.map((item, index) => (
                 <li key={index}> 
                   <Link 
@@ -80,106 +82,108 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className='hidden lg:flex justify-center space-x-12 items-center'>
+            <div className="hidden md:flex justify-center space-x-4 lg:space-x-12 items-center">
               <button 
                 onClick={handleButtonClick}
-                className='py-2 px-3 border rounded-md'
+                className="py-2 px-3 border rounded-md transition-colors duration-300 hover:bg-orange-500 hover:text-white"
               >
                 {buttonText}
               </button>
               <Link 
-                to='/booknow'
-                className='bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md'
+                to="/booknow"
+                className="bg-gradient-to-r from-orange-500 to-orange-800 py-2 px-3 rounded-md transition-transform duration-300 hover:scale-105"
               >
                 BOOK NOW
               </Link>
             </div>
-            <div className='lg:hidden md:flex flex-col justify-end'>
-              <button onClick={toggleNavBar}>
-                {mobileDrawerOpen ? <X /> : <Menu />}
-              </button>
-            </div>
+            <button 
+              className="md:hidden flex items-center"
+              onClick={toggleNavBar}
+              aria-expanded={mobileDrawerOpen}
+              aria-label="Toggle navigation menu"
+            >
+              {mobileDrawerOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
+            </button>
           </div>
-          {mobileDrawerOpen && (
-            <div className='fixed right-0 z-20 bg-neutral-900 w-full p-12 flex flex-col justify-center items-center lg:hidden'>
-              <ul>
+          
+          {/* Mobile menu */}
+          <div 
+            className={`md:hidden fixed inset-0 z-20 bg-neutral-900 transition-transform duration-300 ease-in-out ${mobileDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
+          >
+            <div className="flex flex-col justify-center items-center h-full">
+              <ul className="space-y-6 text-center">
                 {navItems.map((item, index) => (
-                  <li key={index} className='py-4'>
+                  <li key={index}>
                     <Link 
                       to={item.href}
                       onClick={() => setMobileDrawerOpen(false)}
-                      className={`relative py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'hover:text-orange-500'}`}
+                      className={`text-lg py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'hover:text-orange-500'}`}
                     >
                       {item.label}
-                      <span 
-                        className={`absolute bottom-0 left-0 right-0 h-1 transition-width duration-300 ${isActive(item.href) ? 'bg-gradient-to-r from-orange-500 to-orange-800 w-full' : 'w-0 group-hover:w-full'}`}
-                      ></span>
                     </Link>
                   </li>
                 ))}
               </ul>
-              <div className='flex space-x-6'>
+              <div className="mt-8 flex flex-col space-y-4">
                 <button 
                   onClick={handleButtonClick}
-                  className='py-2 px-3 border rounded-md'
+                  className="py-2 px-6 border rounded-md transition-colors duration-300 hover:bg-orange-500 hover:text-white"
                 >
                   {buttonText}
                 </button>
                 <Link 
-                  to='/booknow'
-                  className='py-2 px-3 border rounded-md bg-gradient-to-r from-orange-500 to-orange-800'
+                  to="/booknow"
+                  className="py-2 px-6 rounded-md bg-gradient-to-r from-orange-500 to-orange-800 transition-transform duration-300 hover:scale-105"
                   onClick={() => setMobileDrawerOpen(false)}
                 >
                   BOOK NOW
                 </Link>
               </div>
             </div>
-          )}
+          </div>
         </div>
       </nav>
+      
+      {/* QR Code Modal */}
       <AnimatePresence>
         {modalOpen && (
           <motion.div 
-            className='fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm'
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
           >
             <motion.div 
-              className='bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-md shadow-lg text-center flex flex-col items-center'
+              className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 rounded-md shadow-lg text-center flex flex-col items-center max-w-sm w-full mx-4"
               initial={{ scale: 0.8 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}
               transition={{ duration: 0.3 }}
             >
-              <QRCode value={qrCodeValue} className="mb-4"/>
-              <div className="flex space-x-4">
+              <QRCode value={qrCodeValue} className="mb-4" size={200} />
+              <p className="text-lg font-semibold mb-4">{modalMessage}</p>
+              <div className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 w-full">
                 <button 
-                  className='px-4 py-2 border border-transparent text-white rounded-md transition-colors duration-300 hover:bg-white hover:text-black'
-                >
-                  {modalMessage}
-                </button>
-                <button 
-                  className='px-4 py-2 border border-transparent text-white rounded-md transition-colors duration-300 hover:bg-white hover:text-black'
+                  className="w-full sm:w-auto px-4 py-2 border border-transparent text-white rounded-md transition-colors duration-300 hover:bg-white hover:text-black"
                   onClick={() => {
                     navigator.clipboard.writeText(qrCodeValue);
                   }}
                 >
                   Copy to Clipboard
                 </button>
+                <button 
+                  onClick={() => setModalOpen(false)}
+                  className="w-full sm:w-auto px-4 py-2 bg-red-500 text-white rounded-md transition-colors duration-300 hover:bg-red-600"
+                >
+                  Close
+                </button>
               </div>
-              <button 
-                onClick={() => setModalOpen(false)}
-                className='mt-4 px-4 py-2 bg-red-500 text-white rounded-md'
-              >
-                Close
-              </button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </header>
   );
 };
 

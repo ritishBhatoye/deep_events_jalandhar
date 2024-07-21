@@ -17,7 +17,7 @@ const Logo = () => {
 
   return (
     <mesh ref={meshRef}>
-      <planeGeometry args={[5, 5]} />  {/* Increased size of the plane */}
+      <planeGeometry args={[5, 5]} />
       <meshBasicMaterial map={texture} transparent />
     </mesh>
   );
@@ -30,7 +30,7 @@ const LoadingAnimation = ({ onLoaded }) => {
     if (progress === 100) {
       setTimeout(() => {
         onLoaded();
-      }, 1000); // Increased delay to allow animation to complete
+      }, 1000);
     }
   }, [progress, onLoaded]);
 
@@ -38,8 +38,8 @@ const LoadingAnimation = ({ onLoaded }) => {
     <motion.div
       initial={{ opacity: 1 }}
       animate={{ opacity: 0 }}
-      transition={{ duration: 2.5 }}  // Increased transition duration
-      className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-black to-gray-900"
+      transition={{ duration: 2.5 }}
+      className="fixed inset-0 flex items-center justify-center bg-gradient-to-b from-black to-gray-900 font-light"
       style={{ zIndex: 50 }}
     >
       <Canvas>
@@ -50,10 +50,10 @@ const LoadingAnimation = ({ onLoaded }) => {
           <motion.img
             src={logo}
             alt="Deep Catering & Events Jalandhar"
-            className="w-56 h-56"  // Increased size of the logo
+            className="w-56 h-56"
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 4, ease: 'easeOut' }}  // Increased transition duration
+            transition={{ duration: 4, ease: 'easeOut' }}
           />
         </Html>
       </Canvas>

@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
 import { motion } from 'framer-motion';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import event1 from '../../assets/events/Event-1.MP4';
 import event2 from '../../assets/events/EVENT-2.MP4';
 import event3 from '../../assets/events/EVENT-3.MP4';
@@ -42,6 +43,13 @@ const BestParties = () => {
   const [currentVideo, setCurrentVideo] = useState(null);
   const [showMore, setShowMore] = useState(false);
   const [isLandscape, setIsLandscape] = useState(true);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const openModal = (video) => {
     setCurrentVideo(video);
@@ -59,44 +67,51 @@ const BestParties = () => {
 
   const visibleVideos = showMore ? videos : videos.slice(0, 8);
 
+  const getGridColumns = () => {
+    if (windowWidth < 640) return 'grid-cols-1';
+    if (windowWidth < 1024) return 'grid-cols-2';
+    return 'grid-cols-3';
+  };
+
   return (
-    <section className="py-16 px-8">
+    <section className="best-parties py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
       <div className="flex flex-col md:flex-row items-center">
-        <div className="md:w-1/2">
-          <h2 className="text-3xl font-bold mb-4">Only Best Parties</h2>
-          <p className="text-gray-100 mb-6">Discover our story</p>
-          <p className="text-gray-100">
+        <div className="w-full md:w-1/2 mb-8 md:mb-0">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4">Only Best Parties</h1>
+          <p className="text-gray-100 text-lg sm:text-xl mb-6 font-light">Discover our story</p>
+          <p className="text-gray-100 text-base sm:text-lg font-light">
             Apparently we had reached a great height in the atmosphere, for the sky was a dead black, and the stars had ceased to twinkle. By the same illusion which lifts the horizon of the sea to the level of the spectator on a hillside...
           </p>
         </div>
       </div>
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-8"
+        className={`grid ${getGridColumns()} gap-4 mt-8`}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
         {visibleVideos.map((video, index) => (
-          <motion.div
-            key={index}
-            className="relative cursor-pointer rounded-lg shadow-lg overflow-hidden"
-            onMouseEnter={() => setHovered(index)}
-            onMouseLeave={() => setHovered(null)}
-            onClick={() => openModal(video)}
-          >
-            <video src={video} className="w-full h-64 object-cover" />
-            {hovered === index && (
-              <motion.div
-                className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black to-transparent text-white p-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-              >
-                <h1 className="text-2xl font-thin mb-2">{quotes[index % quotes.length]}</h1>
-                <p className="text-lg font-thin">{2018 + (index % 7)}</p>
-              </motion.div>
-            )}
-          </motion.div>
+          <LazyLoadComponent key={index}>
+            <motion.div
+              className="video-item relative cursor-pointer rounded-lg shadow-lg overflow-hidden"
+              onMouseEnter={() => setHovered(index)}
+              onMouseLeave={() => setHovered(null)}
+              onClick={() => openModal(video)}
+            >
+              <video src={video} className="w-full h-48 sm:h-56 md:h-64 object-cover" alt={`Event video ${index + 1}`} />
+              {hovered === index && (
+                <motion.div
+                  className="video-overlay absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black to-transparent text-white p-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <h2 className="text-xl sm:text-2xl font-thin mb-2">{quotes[index % quotes.length]}</h2>
+                  <p className="text-base sm:text-lg font-thin">{2018 + (index % 7)}</p>
+                </motion.div>
+              )}
+            </motion.div>
+          </LazyLoadComponent>
         ))}
       </motion.div>
       <motion.div
@@ -105,31 +120,22 @@ const BestParties = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 2.0 }}
       >
-        {!showMore ? (
-          <button
-            onClick={() => setShowMore(true)}
-            className="bg-gradient-to-r from-orange-500 to-orange-800 text-white py-2 px-4 rounded"
-          >
-            Show More
-          </button>
-        ) : (
-          <button
-            onClick={() => setShowMore(false)}
-            className="bg-gradient-to-r from-red-500 to-yellow-500 text-white py-2 px-4 rounded"
-          >
-            Show Less
-          </button>
-        )}
+        <button
+          onClick={() => setShowMore(!showMore)}
+          className="show-more-btn bg-gradient-to-r from-orange-500 to-orange-800 text-white py-2 px-4 rounded text-base sm:text-lg font-light"
+        >
+          {showMore ? 'Show Less' : 'Show More'}
+        </button>
       </motion.div>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        className="fixed inset-0 flex items-center justify-center"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-75"
+        className="modal fixed inset-0 flex items-center justify-center"
+        overlayClassName="modal-overlay fixed inset-0 bg-black bg-opacity-75"
         contentLabel="Video Modal"
       >
         <motion.div
-          className="bg-white rounded-lg p-4 max-w-lg w-full h-auto overflow-auto"
+          className="modal-content bg-white rounded-lg p-4 w-full max-w-lg mx-4 sm:mx-auto"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 50 }}
@@ -139,18 +145,18 @@ const BestParties = () => {
             <video
               src={currentVideo}
               controls
-              className={`object-cover ${isLandscape ? 'w-full h-64' : 'h-full w-64'}`}
+              className={`object-cover ${isLandscape ? 'w-full h-48 sm:h-56 md:h-64' : 'h-full w-48 sm:w-56 md:w-64'}`}
             />
             <button
               onClick={toggleOrientation}
-              className="absolute top-2 right-2 bg-blue-500 text-white py-2 px-4 rounded"
+              className="orientation-btn absolute top-2 right-2 bg-blue-500 text-white py-1 px-2 sm:py-2 sm:px-4 rounded text-sm sm:text-base font-light"
             >
               {isLandscape ? 'Portrait' : 'Landscape'}
             </button>
           </div>
           <button
             onClick={closeModal}
-            className="mt-4 bg-red-500 text-white py-2 px-4 rounded"
+            className="close-btn mt-4 bg-red-500 text-white py-2 px-4 rounded text-base sm:text-lg font-light"
           >
             Close
           </button>

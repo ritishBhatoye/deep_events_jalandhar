@@ -5,30 +5,31 @@ const faqData = [
   {
     category: 'General Questions',
     items: [
-      { title: 'High Quality Rooms', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
-      { title: 'Best Amenities at the Best Price', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
-      { title: 'Campfire & Nature Walks', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
-      { title: 'Pickup and Drop Facility', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
+      { title: 'Authentic Punjabi Cuisine', description: 'We offer a wide range of authentic Punjabi dishes prepared by expert chefs using traditional recipes and locally sourced ingredients.' },
+      { title: 'Customizable Event Packages', description: 'Our flexible event packages cater to various budgets and preferences, ensuring a memorable experience for all occasions.' },
+      { title: 'Cultural Performances', description: 'Enhance your event with vibrant Punjabi cultural performances, including Bhangra and Giddha dance shows.' },
+      { title: 'Venue Selection Assistance', description: 'We help you choose the perfect venue for your event, from rustic farmhouses to modern banquet halls in Punjab.' },
     ],
   },
   {
-    category: 'Other Questions',
+    category: 'Services',
     items: [
-      { title: 'Tourist Guide Support', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
-      { title: 'High Class Security', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
-      { title: 'Quick Access to Tourist Attractions', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
-      { title: 'Independent Cottages', description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi.' },
+      { title: 'Professional Event Planning', description: 'Our experienced team handles all aspects of event planning, from concept to execution, ensuring a stress-free experience.' },
+      { title: 'State-of-the-Art Equipment', description: 'We use high-quality sound and lighting equipment to create the perfect ambiance for your event.' },
+      { title: 'Themed Decor', description: 'Choose from a variety of Punjabi-inspired themes or custom designs to make your event truly unique.' },
+      { title: 'On-site Catering', description: 'Our mobile catering units can serve fresh, hot Punjabi delicacies at any location of your choice.' },
     ],
   },
 ];
 
 const FAQ = () => {
   return (
-    <div className="p-8 font-serif">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 font-sans">
+      <h1 className="text-3xl sm:text-4xl font-bold text-center mb-8">Frequently Asked Questions</h1>
       {faqData.map((section, index) => (
         <FAQSection key={index} section={section} />
       ))}
-    </div>
+    </section>
   );
 };
 
@@ -40,14 +41,14 @@ const FAQSection = ({ section }) => {
 
   return (
     <div ref={ref} className={`transition-opacity duration-1000 ${inView ? 'opacity-100' : 'opacity-0'}`}>
-      <div className="flex flex-col md:flex-row mb-8 mx-32">
-        <h2 className="text-3xl font-bold md:w-1/2 mb-4">{section.category}</h2>
-        <div className="md:w-3/4 grid grid-cols-1  md:grid-cols-1 gap-8">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-semibold mb-6">{section.category}</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {section.items.map((item, idx) => (
-            <div key={idx} className="mb-8">
-              <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
+            <article key={idx} className="mb-6">
+              <h3 className="text-lg sm:text-xl font-medium mb-2">{item.title}</h3>
+              <p className="text-gray-600 text-sm sm:text-base">{item.description}</p>
+            </article>
           ))}
         </div>
       </div>

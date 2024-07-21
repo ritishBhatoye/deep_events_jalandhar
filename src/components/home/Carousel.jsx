@@ -50,22 +50,22 @@ const Carousel = () => {
   }, [currentIndex]);
 
   return (
-    <div className="relative w-full h-full mx-auto">
+    <section aria-label="Image and Video Carousel" className="relative w-full h-[40rem] md:h-[40rem] lg:h-[40rem] mx-auto">
       <div className="overflow-hidden h-full">
         <div
           className="flex transition-transform duration-500 h-full"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {images.map((image, index) => (
-            <div key={index} className="w-full flex-shrink-0 relative h-[40rem]">
+            <article key={index} className="w-full flex-shrink-0 relative h-[40rem] md:h-[50rem] lg:h-[60rem]">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
-                className="absolute font-montserrat top-10 left-10 right-10 text-center text-white text-2xl p-2 rounded"
+                className="absolute font-montserrat top-4 sm:top-6 md:top-8 lg:top-10 left-4 sm:left-6 md:left-8 lg:left-10 right-4 sm:right-6 md:right-8 lg:right-10 text-center text-white p-2 rounded"
               >
                 {index === currentIndex && (
-                  <h5 className="text-4xl w-full sm:text-1xl lg:text-2xl text-center tracking-wide">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl w-full text-center tracking-wide font-light">
                     <TypeAnimation
                       sequence={[image.text, 2000, '']}
                       wrapper="span"
@@ -73,9 +73,9 @@ const Carousel = () => {
                       repeat={Infinity}
                       style={{ display: 'inline-block' }}
                     />
-                  </h5>
+                  </h2>
                 )}
-                <h3 className="relative top-40 text-4xl sm:text-3xl lg:text-5xl text-center tracking-wide">
+                <h3 className="relative top-20 sm:top-24 md:top-32 lg:top-40 text-xl sm:text-2xl md:text-3xl lg:text-4xl text-center tracking-wide font-light">
                   {image.title}
                   <span className="bg-gradient-to-r from-orange-500 to-red-800 text-transparent bg-clip-text">
                     {" "} for Clients
@@ -85,8 +85,9 @@ const Carousel = () => {
               {image.type === 'image' ? (
                 <img
                   src={image.url}
-                  alt={`Slide ${index}`}
+                  alt={`${image.text} - ${image.title}`}
                   className="w-full h-full object-cover opacity-25"
+                  loading="lazy"
                 />
               ) : (
                 <video
@@ -95,22 +96,50 @@ const Carousel = () => {
                   autoPlay
                   loop
                   muted
-                />
+                  playsInline
+                  controls={false}
+                >
+                  Your browser does not support the video tag.
+                </video>
               )}
-            </div>
+            </article>
           ))}
         </div>
       </div>
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2">
+
+      {/* Navigation buttons for mobile/small format */}
+      <div className="absolute inset-0 flex items-center justify-between p-4 sm:hidden">
+        <button
+          onClick={prevSlide}
+          className="bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+          aria-label="Previous slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button
+          onClick={nextSlide}
+          className="bg-black bg-opacity-50 text-white p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-white"
+          aria-label="Next slide"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+
+      <nav className="absolute bottom-2 sm:bottom-3 md:bottom-4 lg:bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-1 sm:space-x-2">
         {images.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full ${index === currentIndex ? 'bg-gray-800' : 'bg-gray-400'}`}
+            aria-label={`Go to slide ${index + 1}`}
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full ${index === currentIndex ? 'bg-gray-800' : 'bg-gray-400'}`}
             onClick={() => setCurrentIndex(index)}
           />
         ))}
-      </div>
-    </div>
+      </nav>
+    </section>
   );
 };
 

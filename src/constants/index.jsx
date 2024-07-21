@@ -156,7 +156,7 @@ export const testimonials = [
     eventPurpose: "Jaggo Night",
     location: "Kapurthala",
     image: user9,
-    text: "The event was flawlessly executed. The team’s dedication and hard work were evident in every aspect. Truly impressed with their service.",
+    text: "The event was flawlessly executed. The team's dedication and hard work were evident in every aspect. Truly impressed with their service.",
     rating: 5
   },
   {

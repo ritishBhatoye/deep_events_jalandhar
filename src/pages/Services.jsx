@@ -10,7 +10,7 @@ const Services = () => {
     <div>
         <HeroSections />
  
-  <div className='mx-12'> 
+  <div className='mx-8'> 
 
   <FeatureSection/>
   </div>

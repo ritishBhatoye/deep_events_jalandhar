@@ -28,8 +28,8 @@ import softdrinks1 from '../assets/menu/drinks/softdrinks_guava_chilli_drink _ P
 import softdrinks2 from '../assets/menu/drinks/softdrinks_shake_chocolate_shake.jpg';
 import { AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation'; 
-
 import Modal from 'react-modal'; 
+import { Helmet } from 'react-helmet'; // Add this import for SEO
 
 const menuItems = [
   { name: 'Breakfast', images: [breakfast, breakfast1, breakfast2, breakfast3, breakfast4, breakfast5, breakfast6, breakfast7, breakfast8, breakfast9, breakfast10, breakfast11, breakfast12, breakfast13], link: '/menu/breakfast' },
@@ -79,46 +79,52 @@ const Menu = () => {
   };
 
   return (
-    <>
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative bg-cover bg-center p-6 text-white w-full h-screen flex flex-col items-center justify-center"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div className="absolute inset-0 bg-black opacity-50"></div>
-        <div className="absolute top-4 w-full text-center z-20">
-          <h2 className="text-3xl font-montserrat font-thin">Deep Catering & Events Jalandhar</h2>
-        </div>
-        <div className="relative p-6 text-center z-20 flex-grow flex items-center justify-center">
-          <h1 className="text-4xl sm:text-2xl lg:text-5xl tracking-wide">
+    <article className="menu-page">
+      <Helmet>
+        <title>Deep Catering & Events Jalandhar - Menu</title>
+        <meta name="description" content="Explore our diverse menu for weddings, parties, and events. Deep Catering & Events Jalandhar offers a wide range of delicious options." />
+      </Helmet>
+
+      <header className="hero-section">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="relative bg-cover bg-center p-4 sm:p-6 text-white w-full h-[52rem] flex flex-col items-center justify-center"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(${backgroundImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          <h1 className="relative z-20 text-2xl sm:text-3xl md:text-4xl font-light mb-4 font-cursive">Deep Catering & Events Jalandhar</h1>
+          <div className="relative z-20 text-center max-w-4xl">
             <TypeAnimation
               sequence={[
                 "Take the guesswork out of your next function. Call Deep Catering & Events for:",
                 2000,
                 "Weddings, Parties, House Parties, Birthdays, Business Meetings and More!",
               ]}
-              wrapper="span"
+              wrapper="h2"
               speed={50}
-              className="bg-gradient-to-r from-orange-300 to-red-600 text-transparent bg-clip-text"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl tracking-wide bg-gradient-to-r from-orange-300 to-red-600 text-transparent bg-clip-text font-thin font-cursive"
               repeat={Infinity}
             />
-          </h1>
-        </div>
-        <div className="absolute bottom-4 text-center z-20">
-          <p className="text-white text-lg font-thin">Swipe up for more</p>
-          <div className="mt-2">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 animate-bounce mx-auto font-thin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
           </div>
-        </div>
-      </motion.div>
+          <div className="absolute bottom-4 text-center z-20">
+            <p className="text-white text-base sm:text-lg font-light">Swipe up for more</p>
+            <div className="mt-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 animate-bounce mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
+        </motion.div>
+      </header>
 
-      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-6 ${modalIsOpen ? 'filter blur-sm' : ''}`}>
+      <main className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 p-4 sm:p-6 ${modalIsOpen ? 'filter blur-sm' : ''}`}>
         {menuItems.map((item, index) => (
-          <motion.div
+          <motion.section
             key={index}
             className="relative group"
             initial={{ opacity: 0, y: 20 }}
@@ -129,29 +135,30 @@ const Menu = () => {
               setCurrentImageIndex((prev) => ({ ...prev, [index]: 0 }));
             }}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => openModal(item)} // Open modal on click
+            onClick={() => openModal(item)}
           >
             <div className="block overflow-hidden rounded-lg shadow-lg cursor-pointer">
               <motion.img
                 src={hoveredIndex === index ? item.images[currentImageIndex[index]] : item.images[0]}
-                alt={item.name}
-                className="w-full h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
+                alt={`${item.name} menu item`}
+                className="w-full h-48 sm:h-64 object-cover transform transition-transform duration-300 group-hover:scale-105"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-0 group-hover:opacity-50 transition-opacity duration-300"></div>
               <div className="absolute inset-0 flex items-center justify-center">
-                <motion.h2
-                  className="text-white text-xl font-bold tracking-wide bg-black bg-opacity-70 px-4 py-2 rounded transition-transform duration-300 group-hover:scale-110"
+                <motion.h3
+                  className="text-white text-lg sm:text-xl font-thin font-cursive tracking-wide bg-black bg-opacity-70 px-3 py-1 sm:px-4 sm:py-2 rounded transition-transform duration-300 group-hover:scale-110"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.5 }}
                 >
                   {item.name}
-                </motion.h2>
+                </motion.h3>
               </div>
             </div>
-          </motion.div>
+          </motion.section>
         ))}
-      </div>
+      </main>
 
       <AnimatePresence>
         {modalIsOpen && (
@@ -164,7 +171,7 @@ const Menu = () => {
               transition={{ duration: 0.3 }}
             />
             <motion.div
-              className="fixed inset-0 flex items-center justify-center z-50"
+              className="fixed inset-0 flex items-center justify-center z-50 p-4"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
@@ -176,18 +183,18 @@ const Menu = () => {
                   onClick={closeModal}
                 >
                   <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12"></path>
                   </svg>
                 </button>
-                <h2 className="text-xl font-bold mb-4 text-white">{selectedItem?.name}</h2>
+                <h2 className="text-xl font-bold mb-4 text-white font-cursive">{selectedItem?.name}</h2>
                 <button
-                  className="bg-red-500 text-white px-4 py-2 rounded mb-2 w-full"
+                  className="bg-red-500 text-white px-4 py-2 rounded mb-2 w-full font-thin"
                   onClick={() => handleOptionClick('Non-Veg')}
                 >
                   Non-Veg
                 </button>
                 <button
-                  className="bg-green-500 text-white px-4 py-2 rounded w-full"
+                  className="bg-green-500 text-white px-4 py-2 rounded w-full font-thin"
                   onClick={() => handleOptionClick('Veg')}
                 >
                   Veg
@@ -197,9 +204,8 @@ const Menu = () => {
           </>
         )}
       </AnimatePresence>
-    </>
+    </article>
   );
 };
 
 export default Menu;
-  
