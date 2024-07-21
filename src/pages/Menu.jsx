@@ -30,6 +30,7 @@ import { AnimatePresence } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation'; 
 import Modal from 'react-modal'; 
 import { Helmet } from 'react-helmet'; // Add this import for SEO
+import ThreeJSBackground from '../components/ThreeJSBackground'; // Import the ThreeJSBackground component
 
 const menuItems = [
   { name: 'Breakfast', images: [breakfast, breakfast1, breakfast2, breakfast3, breakfast4, breakfast5, breakfast6, breakfast7, breakfast8, breakfast9, breakfast10, breakfast11, breakfast12, breakfast13], link: '/menu/breakfast' },
@@ -79,7 +80,8 @@ const Menu = () => {
   };
 
   return (
-    <article className="menu-page">
+    <div>
+      <ThreeJSBackground />
       <Helmet>
         <title>Deep Catering & Events Jalandhar - Menu</title>
         <meta name="description" content="Explore our diverse menu for weddings, parties, and events. Deep Catering & Events Jalandhar offers a wide range of delicious options." />
@@ -204,7 +206,7 @@ const Menu = () => {
           </>
         )}
       </AnimatePresence>
-    </article>
+    </div>
   );
 };
 

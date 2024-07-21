@@ -3,6 +3,7 @@ import Modal from 'react-modal';
 import img1 from '../../assets/aboutus/aboutus1.jpg';
 import event1 from '../../assets/events/Event-1.MP4';
 import event2 from '../../assets/events/EVENT-2.MP4';
+import ThreeJSBackground from '../ThreeJSBackground';
 
 const SpecialEvent = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,8 +20,9 @@ const SpecialEvent = () => {
   };
 
   return (
-    <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
-      <div className="container mx-auto">
+    <section className="relative py-8 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8">
+      <ThreeJSBackground />
+      <div className="container mx-auto relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-8">
           <div className="w-full lg:w-1/2">
             <img

@@ -4,6 +4,7 @@ import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { TypeAnimation } from 'react-type-animation';
+import ThreeJSBackground from '../components/ThreeJSBackground'; // Import the ThreeJSBackground component
 import backgroundImage from '../assets/services/wedding_image.png'; 
 
 const splashEffect = {
@@ -73,11 +74,13 @@ const BookingForm = () => {
 
   return (
     <motion.div 
-      className="mx-auto w-full text-white"
+      className="mx-auto w-full text-white relative"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
     >
+      <ThreeJSBackground /> {/* Add ThreeJSBackground component */}
+      
       <motion.div 
         className="relative bg-cover bg-center p-6 text-white w-full"
         style={{ backgroundImage: `url(${backgroundImage})` }}
@@ -111,25 +114,28 @@ const BookingForm = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="relative" // Add relative positioning
             >
-              <label htmlFor={label.toLowerCase().replace(' ', '-')} className="block text-md font-medium text-gray-400 mb-2">
+              <ThreeJSBackground /> {/* Add ThreeJSBackground to each form field */}
+              <label htmlFor={label.toLowerCase().replace(' ', '-')} className="block text-md font-medium text-gray-400 mb-2 relative z-10">
                 {label}
               </label>
               <input
                 type={label.includes('Date') ? 'date' : label === 'Members' ? 'number' : label === 'Phone Number' ? 'tel' : label === 'Customer Email' ? 'email' : 'text'}
                 name={label.toLowerCase().replace(' ', '-')}
                 id={label.toLowerCase().replace(' ', '-')}
-                className="mt-1 block w-full bg-transparent border-b border-white text-white focus:border-orange-500 focus:outline-none transition duration-300 ease-in-out"
+                className="mt-1 block w-full bg-transparent border-b border-white text-white focus:border-orange-500 focus:outline-none transition duration-300 ease-in-out relative z-10"
                 required
               />
             </motion.div>
           ))}
         </div>
         
-        <div className="flex justify-center mt-8">
+        <div className="flex justify-center mt-8 relative"> {/* Add relative positioning */}
+          <ThreeJSBackground /> {/* Add ThreeJSBackground to submit button */}
           <motion.button
             type="submit"
-            className="inline-flex font-montserrat items-center px-6 py-3 border border-transparent text-md font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-red-800 shadow-md hover:from-orange-600 hover:to-red-900 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:shadow-lg"
+            className="inline-flex font-montserrat items-center px-6 py-3 border border-transparent text-md font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-red-800 shadow-md hover:from-orange-600 hover:to-red-900 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:shadow-lg relative z-10"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

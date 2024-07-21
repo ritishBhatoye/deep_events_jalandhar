@@ -11,8 +11,7 @@ import FeatureSection from '../components/home/featureSection';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import 'react-loading-skeleton/dist/skeleton.css';
-
-
+import ThreeJSBackground from '../components/ThreeJSBackground';
 
 const Home = () => {
     const [carouselRef, carouselInView] = useInView({ triggerOnce: true });
@@ -25,6 +24,7 @@ const Home = () => {
   
     return (
       <>
+        <ThreeJSBackground />
         <motion.div
           ref={carouselRef}
           initial={{ opacity: 0, y: 20 }}
@@ -39,6 +39,7 @@ const Home = () => {
           animate={{ opacity: aboutUsInView ? 1 : 0, y: aboutUsInView ? 0 : 20 }}
           transition={{ duration: 0.75 }}
         >
+            <ThreeJSBackground />
           <AboutUs />
         </motion.div>
         <div className='max-w-7xl  mx-auto pt-8 '>
@@ -49,6 +50,7 @@ const Home = () => {
             animate={{ opacity: featureSectionInView ? 1 : 0, y: featureSectionInView ? 0 : 20 }}
             transition={{ duration: 0.75 }}
           >
+              <ThreeJSBackground />
             <FeatureSection />
           </motion.div>
           <motion.div

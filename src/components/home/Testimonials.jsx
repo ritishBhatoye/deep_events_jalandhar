@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { testimonials } from '../../constants';
 import { motion } from 'framer-motion';
 import anime from 'animejs';
+import ThreeJSBackground from '../ThreeJSBackground'; // Add this import
 
 const Testimonials = () => {
   const [visibleCount, setVisibleCount] = useState(10);
@@ -19,6 +20,7 @@ const Testimonials = () => {
 
   return (
     <div className='mt-20 tracking-wide'>
+      <ThreeJSBackground /> {/* Add this line */}
       <h2 className='text-3xl sm:text-5xl lg:text-6xl text-center my-10 lg:my-20'> What people are saying</h2>
       <div className='flex flex-wrap justify-center'>
         {testimonials.slice(0, visibleCount).map((testimonial, index) => (

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import aboutUsImage from '../../assets/about-us.jpg';
+import ThreeJSBackground from '../aboutus/ThreeJSBackground';
+
 
 const AboutUs = () => {
   const [expanded, setExpanded] = useState(false);
@@ -9,6 +11,7 @@ const AboutUs = () => {
 
   return (
     <section className="relative py-8 sm:py-12 md:py-16">
+      <ThreeJSBackground/>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-8 lg:mb-0">

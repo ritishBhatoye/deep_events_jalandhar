@@ -3,6 +3,7 @@ import { animateScroll as scroll } from 'react-scroll';
 import { motion } from 'framer-motion';
 import ContactUsHeader from '../components/contactUs/contactUsHeader';
 import ContactForm from '../components/contactUs/contactForm';
+import ThreeJSBackground from '../components/ThreeJSBackground'; // Add this import
 
 const Contact = () => {
   useEffect(() => {
@@ -34,12 +35,19 @@ const Contact = () => {
         variants={variants}
         transition={{ duration: 0.5 }}
       >
+        <ThreeJSBackground />
+      </motion.div>
+      <motion.div
+        variants={variants}
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
         <ContactUsHeader />
       </motion.div>
       <motion.div
         variants={variants}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
       >
+       <ThreeJSBackground />
         <ContactForm />
       </motion.div>
     </motion.div>

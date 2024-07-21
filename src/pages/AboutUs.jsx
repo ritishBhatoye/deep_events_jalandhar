@@ -3,7 +3,7 @@ import { motion, useAnimation } from 'framer-motion';
 import OurStory from '../components/aboutus/ourStory';
 import SpecialEvent from '../components/aboutus/specialEvent';
 import BestParties from '../components/aboutus/bestParties';
-
+import ThreeJSBackground from '../components/ThreeJSBackground';
 
 import HeroSections from '../components/aboutus/HeroSections';
 const AboutUs = () => {
@@ -101,37 +101,38 @@ const AboutUs = () => {
 
   return (
     <div>
-        
-    
+      <ThreeJSBackground />
+      <div className="content">
         <HeroSections />
 
-      <motion.div
-        ref={ourStoryRef}
-        id="ourStory"
-        initial={{ opacity: 0, y: 50 }}
-        animate={controlsOurStory}
-        transition={{ duration: 1.5 }}
-      >
-        <OurStory />
-      </motion.div>
-      <motion.div
-        ref={specialEventRef}
-        id="specialEvent"
-        initial={{ opacity: 0, y: 50 }}
-        animate={controlsSpecialEvent}
-        transition={{ duration: 1.5 }}
-      >
-        <SpecialEvent />
-      </motion.div>
-      <motion.div
-        ref={bestPartiesRef}
-        id="bestParties"
-        initial={{ opacity: 0, y: 50 }}
-        animate={controlsBestParties}
-        transition={{ duration: 1.5 }}
-      >
-        <BestParties />
-      </motion.div>
+        <motion.div
+          ref={ourStoryRef}
+          id="ourStory"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsOurStory}
+          transition={{ duration: 1.5 }}
+        >
+          <OurStory />
+        </motion.div>
+        <motion.div
+          ref={specialEventRef}
+          id="specialEvent"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsSpecialEvent}
+          transition={{ duration: 1.5 }}
+        >
+          <SpecialEvent />
+        </motion.div>
+        <motion.div
+          ref={bestPartiesRef}
+          id="bestParties"
+          initial={{ opacity: 0, y: 50 }}
+          animate={controlsBestParties}
+          transition={{ duration: 1.5 }}
+        >
+          <BestParties />
+        </motion.div>
+      </div>
     </div>
   );
 };
