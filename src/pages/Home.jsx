@@ -39,7 +39,6 @@ const Home = () => {
           animate={{ opacity: aboutUsInView ? 1 : 0, y: aboutUsInView ? 0 : 20 }}
           transition={{ duration: 0.75 }}
         >
-            <ThreeJSBackground />
           <AboutUs />
         </motion.div>
         <div className='max-w-7xl  mx-auto pt-8 '>
