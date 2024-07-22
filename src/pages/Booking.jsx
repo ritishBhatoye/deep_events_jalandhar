@@ -79,7 +79,7 @@ const BookingForm = () => {
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
     >
-      <ThreeJSBackground /> {/* Add ThreeJSBackground component */}
+      <ThreeJSBackground />
       
       <motion.div 
         className="relative bg-cover bg-center p-6 text-white w-full"
@@ -106,7 +106,7 @@ const BookingForm = () => {
         </div>
       </motion.div>
       
-      <form ref={form} onSubmit={sendEmail} className="relative content-center p-4 px-32 items-center space-y-12 mt-12">
+      <form ref={form} onSubmit={sendEmail} className="relative content-center p-4 sm:px-8 md:px-16 lg:px-32 items-center space-y-12 mt-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {['Customer\'s Name', 'Customer Email', 'Phone Number', 'Booking Date', 'Function Date', 'Palace', 'Members'].map((label, index) => (
             <motion.div 
@@ -116,7 +116,7 @@ const BookingForm = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative" // Add relative positioning
             >
-              <ThreeJSBackground /> {/* Add ThreeJSBackground to each form field */}
+              {/* <ThreeJSBackground />  */}
               <label htmlFor={label.toLowerCase().replace(' ', '-')} className="block text-md font-medium text-gray-400 mb-2 relative z-10">
                 {label}
               </label>

@@ -25,6 +25,9 @@ const Contact = () => {
   };
 
   return (
+
+
+
     <motion.div
       initial="initial"
       animate="animate"
@@ -35,7 +38,7 @@ const Contact = () => {
         variants={variants}
         transition={{ duration: 0.5 }}
       >
-        <ThreeJSBackground />
+        {/* <ThreeJSBackground /> */}
       </motion.div>
       <motion.div
         variants={variants}
@@ -47,7 +50,7 @@ const Contact = () => {
         variants={variants}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-       <ThreeJSBackground />
+       {/* <ThreeJSBackground /> */}
         <ContactForm />
       </motion.div>
     </motion.div>
