@@ -114,7 +114,14 @@ const Navbar = () => {
             className={`md:hidden fixed inset-0 z-40 bg-black bg-opacity-95 backdrop-blur-lg transition-transform duration-300 ease-in-out ${mobileDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
             <div className="flex flex-col justify-start items-center h-full pt-20 pb-8 px-6 overflow-y-auto">
-              <ul className="space-y-6 w-full text-center">
+              <button 
+                className="absolute top-4 right-4 text-white"
+                onClick={toggleNavBar}
+                aria-label="Close navigation menu"
+              >
+                <X size={24} aria-hidden="true" />
+              </button>
+              <ul className="space-y-6 w-full text-center mt-10">
                 {navItems.map((item, index) => (
                   <li key={index}>
                     <Link 

@@ -23,8 +23,8 @@ const Footer = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
         >
-            <div className="container mx-auto footer-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12">
-                <div className="flex flex-col items-start">
+            <div className="container mx-auto footer-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 text-center sm:text-left">
+                <div className="flex flex-col items-center sm:items-start">
                     <img src={logo} alt="Deep Event Jalandhar" className="w-24 sm:w-32 h-auto mb-4" />
                     <h2 className="text-xl sm:text-2xl font-semibold mb-4">DEEP EVENT JALANDHAR</h2>
                 </div>
