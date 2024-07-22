@@ -167,6 +167,7 @@ const Navbar = () => {
               animate={{ scale: 1 }}
               exit={{ scale: 0.8 }}
               transition={{ duration: 0.3 }}
+              style={{ margin: 'auto' }}
             >
               <QRCode value={qrCodeValue} className="mb-4" size={150} />
               <p className="text-base sm:text-lg font-semibold mb-4">{modalMessage}</p>
