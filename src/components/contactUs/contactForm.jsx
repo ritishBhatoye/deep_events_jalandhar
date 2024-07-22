@@ -45,7 +45,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="relative w-full h-screen lg:h-[32rem]">
+    <div className="relative w-full h-screen lg:h-[36rem]">
       <ThreeJSBackground />
       <div className="absolute inset-0 flex flex-col items-center font-montserrat p-10 animate-fade-in">
         <h2 className="text-lg font-light mb-4">LEAVE A MESSAGE</h2>
