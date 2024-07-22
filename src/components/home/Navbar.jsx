@@ -97,43 +97,49 @@ const Navbar = () => {
               </Link>
             </div>
             <button 
-              className="md:hidden flex items-center"
+              className="md:hidden flex items-center z-50"
               onClick={toggleNavBar}
               aria-expanded={mobileDrawerOpen}
               aria-label="Toggle navigation menu"
             >
-              {mobileDrawerOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
+              {mobileDrawerOpen ? (
+                <X size={24} className="text-white" aria-hidden="true" />
+              ) : (
+                <Menu size={24} aria-hidden="true" />
+              )}
             </button>
           </div>
           
-          {/* Mobile menu */}
           <div 
-            className={`md:hidden fixed inset-0 z-20 bg-neutral-900 transition-transform duration-300 ease-in-out ${mobileDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            className={`md:hidden fixed inset-0 z-40 bg-neutral-900 transition-transform duration-300 ease-in-out ${mobileDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
-            <div className="flex flex-col justify-center items-center h-full">
-              <ul className="space-y-4 sm:space-y-6 text-center">
+            <div className="flex flex-col justify-start items-center h-full pt-16 pb-8 px-4 overflow-y-auto">
+              <ul className="space-y-4 w-full text-center">
                 {navItems.map((item, index) => (
                   <li key={index}>
                     <Link 
                       to={item.href}
                       onClick={() => setMobileDrawerOpen(false)}
-                      className={`text-base sm:text-lg py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'hover:text-orange-500'}`}
+                      className={`block text-lg py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'text-white hover:text-orange-500'}`}
                     >
                       {item.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 sm:mt-8 flex flex-col space-y-3 sm:space-y-4">
+              <div className="mt-8 flex flex-col space-y-4 w-full">
                 <button 
-                  onClick={handleButtonClick}
-                  className="py-2 px-4 sm:px-6 text-sm sm:text-base border rounded-md transition-colors duration-300 hover:bg-orange-500 hover:text-white"
+                  onClick={() => {
+                    handleButtonClick();
+                    setMobileDrawerOpen(false);
+                  }}
+                  className="w-full py-2 px-4 text-base border border-white text-white rounded-md transition-colors duration-300 hover:bg-orange-500 hover:border-orange-500"
                 >
                   {buttonText}
                 </button>
                 <Link 
                   to="/booknow"
-                  className="py-2 px-4 sm:px-6 text-sm sm:text-base rounded-md bg-gradient-to-r from-orange-500 to-orange-800 transition-transform duration-300 hover:scale-105"
+                  className="w-full py-2 px-4 text-base rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white text-center transition-transform duration-300 hover:scale-105"
                   onClick={() => setMobileDrawerOpen(false)}
                 >
                   BOOK NOW
@@ -144,7 +150,6 @@ const Navbar = () => {
         </div>
       </nav>
       
-      {/* QR Code Modal */}
       <AnimatePresence>
         {modalOpen && (
           <motion.div 
