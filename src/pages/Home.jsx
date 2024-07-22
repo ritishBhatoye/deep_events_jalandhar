@@ -24,7 +24,7 @@ const Home = () => {
   
     return (
       <>
-        <ThreeJSBackground />
+        {/* <ThreeJSBackground /> */}
         <motion.div
           ref={carouselRef}
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +49,7 @@ const Home = () => {
             animate={{ opacity: featureSectionInView ? 1 : 0, y: featureSectionInView ? 0 : 20 }}
             transition={{ duration: 0.75 }}
           >
-              <ThreeJSBackground />
+              {/* <ThreeJSBackground /> */}
             <FeatureSection />
           </motion.div>
           <motion.div
