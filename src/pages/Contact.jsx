@@ -38,7 +38,7 @@ const Contact = () => {
         variants={variants}
         transition={{ duration: 0.5 }}
       >
-        {/* <ThreeJSBackground /> */}
+        <ThreeJSBackground />
       </motion.div>
       <motion.div
         variants={variants}
