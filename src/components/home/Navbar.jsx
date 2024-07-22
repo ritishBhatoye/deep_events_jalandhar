@@ -53,8 +53,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full">
-      <nav className="py-2 sm:py-3 backdrop-blur-lg border-b border-neutral-700/80" aria-label="Main navigation">
+    <header className="sticky top-0 z-50 w-full bg-black bg-opacity-90 backdrop-blur-md">
+      <nav className="py-2 sm:py-3 border-b border-neutral-700/80" aria-label="Main navigation">
         <div className="container px-4 mx-auto relative text-sm">
           <div className="flex justify-between items-center">
             <div className="flex items-center flex-shrink-0">
@@ -105,41 +105,45 @@ const Navbar = () => {
               {mobileDrawerOpen ? (
                 <X size={24} className="text-white" aria-hidden="true" />
               ) : (
-                <Menu size={24} aria-hidden="true" />
+                <Menu size={24} className="text-white" aria-hidden="true" />
               )}
             </button>
           </div>
           
           <div 
-            className={`md:hidden fixed inset-0 z-40 bg-neutral-900 transition-transform duration-300 ease-in-out ${mobileDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
+            className={`md:hidden fixed inset-0 z-40 bg-black bg-opacity-95 backdrop-blur-lg transition-transform duration-300 ease-in-out ${mobileDrawerOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
-            <div className="flex flex-col justify-start items-center h-full pt-16 pb-8 px-4 overflow-y-auto">
-              <ul className="space-y-4 w-full text-center">
+            <div className="flex flex-col justify-start items-center h-full pt-20 pb-8 px-6 overflow-y-auto">
+              <ul className="space-y-6 w-full text-center">
                 {navItems.map((item, index) => (
                   <li key={index}>
                     <Link 
                       to={item.href}
                       onClick={() => setMobileDrawerOpen(false)}
-                      className={`block text-lg py-2 px-3 transition-colors duration-300 ${isActive(item.href) ? 'text-orange-500' : 'text-white hover:text-orange-500'}`}
+                      className={`block text-xl py-2 px-3 transition-colors duration-300 ${
+                        isActive(item.href) 
+                          ? 'text-orange-500 font-semibold' 
+                          : 'text-white hover:text-orange-500'
+                      }`}
                     >
                       {item.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 flex flex-col space-y-4 w-full">
+              <div className="mt-10 flex flex-col space-y-4 w-full">
                 <button 
                   onClick={() => {
                     handleButtonClick();
                     setMobileDrawerOpen(false);
                   }}
-                  className="w-full py-2 px-4 text-base border border-white text-white rounded-md transition-colors duration-300 hover:bg-orange-500 hover:border-orange-500"
+                  className="w-full py-3 px-4 text-lg border border-orange-500 text-orange-500 rounded-md transition-colors duration-300 hover:bg-orange-500 hover:text-white"
                 >
                   {buttonText}
                 </button>
                 <Link 
                   to="/booknow"
-                  className="w-full py-2 px-4 text-base rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white text-center transition-transform duration-300 hover:scale-105"
+                  className="w-full py-3 px-4 text-lg rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white text-center transition-transform duration-300 hover:scale-105"
                   onClick={() => setMobileDrawerOpen(false)}
                 >
                   BOOK NOW
