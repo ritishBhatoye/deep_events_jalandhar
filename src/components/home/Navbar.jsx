@@ -53,8 +53,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-black bg-opacity-90 backdrop-blur-md">
-      <nav className="py-2 sm:py-3 border-b border-neutral-700/80" aria-label="Main navigation">
+    <header className="sticky top-0 z-50 w-full bg-black/50 backdrop-filter backdrop-blur-lg">
+      <nav className="py-2 sm:py-3 border-b border-neutral-700/30" aria-label="Main navigation">
         <div className="container px-4 mx-auto relative text-sm">
           <div className="flex justify-between items-center">
             <div className="flex items-center flex-shrink-0">
