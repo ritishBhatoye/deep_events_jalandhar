@@ -60,7 +60,7 @@ const BookingForm = () => {
         Members: ${data.members}
       `.trim();
 
-      // Replace with your WhatsApp number
+      // Replace with your WhatsApp number 
       const whatsappNumber = '7087963595'; // Example: '1234567890'
       const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 

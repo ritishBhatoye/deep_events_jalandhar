@@ -43,9 +43,9 @@ const Navbar = () => {
       }
     } else {
       if (isMobileDevice) {
-        window.location.href = 'https://wa.me/1234567890'; // Replace with actual WhatsApp number
+        window.location.href = 'https://wa.me/9876125394'; // Replace with actual WhatsApp number
       } else {
-        setQrCodeValue('https://wa.me/1234567890');
+        setQrCodeValue('https://wa.me/9876125394');
         setModalMessage('SCAN TO WHATSAPP MESSAGE');
         setModalOpen(true);
       }
