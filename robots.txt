@@ -1,0 +1,3 @@
+Sitemap: https://www.deepeventjalandhar.com/sitemap.xml
+User-agent: *
+Allow: /
