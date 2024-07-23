@@ -18,7 +18,7 @@ const Footer = () => {
 
     return (
         <motion.footer
-            className="bg-gradient-to-r from-orange-500 to-orange-800 text-white py-8 sm:py-12 mt-10 px-4 sm:px-6 md:px-12 rounded-t-lg font-montserrat font-light"
+            className="bg-gradient-to-r from-orange-500  to-orange-800 text-white py-8 sm:py-12 mt-12 px-4 sm:px-6 md:px-12 rounded-t-lg font-montserrat font-light"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
