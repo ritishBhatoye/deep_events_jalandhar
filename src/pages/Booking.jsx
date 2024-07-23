@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import emailjs from 'emailjs-com';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,6 +16,7 @@ const splashEffect = {
 const BookingForm = () => {
   const form = useRef();
   const controls = useAnimation();
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     // Trigger the animation after a short delay
@@ -44,8 +45,8 @@ const BookingForm = () => {
       // Send email using emailjs
       await emailjs.send('service_npavkes', 'template_wliif7j', data, "ANlmnkhJtKMonPp4V");
       
-      // Show success toast
-      toast.success('Your details are submitted successfully and we will contact you very soon');
+      // Show success popup instead of toast
+      setIsSubmitted(true);
 
       // Construct WhatsApp message
       const whatsappMessage = `
@@ -71,6 +72,36 @@ const BookingForm = () => {
       toast.error('Failed to send the message. Please try again.');
     }
   };
+
+  const SuccessPopup = () => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.8 }}
+      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 p-4"
+    >
+      <div className="bg-customGreenLight p-6 sm:p-8 rounded-lg shadow-lg text-center max-w-sm w-full">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          className="text-4xl sm:text-6xl mb-4"
+        >
+          🎉
+        </motion.div>
+        <h2 className="text-xl sm:text-2xl font-bold text-customWhite mb-4">Booking Submitted!</h2>
+        <p className="text-sm sm:text-base text-customWhite mb-6">Your details are submitted successfully and we will contact you very soon.</p>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="bg-customAccent text-customGreen px-4 py-2 rounded-md text-sm sm:text-base"
+          onClick={() => setIsSubmitted(false)}
+        >
+          Close
+        </motion.button>
+      </div>
+    </motion.div>
+  );
 
   return (
     <motion.div 
@@ -141,6 +172,9 @@ const BookingForm = () => {
           </motion.button>
         </div>
       </form>
+      <AnimatePresence>
+        {isSubmitted && <SuccessPopup />}
+      </AnimatePresence>
       <ToastContainer />
     </motion.div>
   );
