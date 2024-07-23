@@ -74,7 +74,7 @@ const BookingForm = () => {
 
   return (
     <motion.div 
-      className="mx-auto w-full text-white relative"
+      className="mx-auto w-full text-white relative min-h-screen flex flex-col"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
@@ -84,7 +84,7 @@ const BookingForm = () => {
       <motion.div 
         className="relative bg-cover bg-center p-6 text-white w-full"
         style={{ backgroundImage: `url(${backgroundImage})` }}
-        initial={{ height: '100vh' }}
+        initial={{ height: 'auto' }}
         animate={controls}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -106,7 +106,7 @@ const BookingForm = () => {
         </div>
       </motion.div>
       
-      <form ref={form} onSubmit={sendEmail} className="relative content-center p-4 sm:px-8 md:px-16 lg:px-32 items-center space-y-12 mt-12">
+      <form ref={form} onSubmit={sendEmail} className="flex-grow relative content-center p-4 sm:px-8 md:px-16 lg:px-32 items-center space-y-12 mt-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           {['Customer\'s Name', 'Customer Email', 'Phone Number', 'Booking Date', 'Function Date', 'Palace', 'Members'].map((label, index) => (
             <motion.div 
@@ -116,7 +116,6 @@ const BookingForm = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="relative" // Add relative positioning
             >
-              {/* <ThreeJSBackground />  */}
               <label htmlFor={label.toLowerCase().replace(' ', '-')} className="block text-md font-medium text-gray-400 mb-2 relative z-10">
                 {label}
               </label>
@@ -131,8 +130,7 @@ const BookingForm = () => {
           ))}
         </div>
         
-        <div className="flex justify-center mt-8 relative"> {/* Add relative positioning */}
-          <ThreeJSBackground /> {/* Add ThreeJSBackground to submit button */}
+        <div className="flex justify-center mt-8 relative pb-8">
           <motion.button
             type="submit"
             className="inline-flex font-montserrat items-center px-6 py-3 border border-transparent text-md font-medium rounded-md text-white bg-gradient-to-r from-orange-500 to-red-800 shadow-md hover:from-orange-600 hover:to-red-900 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:shadow-lg relative z-10"
