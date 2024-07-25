@@ -2,7 +2,7 @@ import { SitemapStream, streamToPromise } from 'sitemap';
 import { createWriteStream } from 'fs';
 import { Readable } from 'stream';
 
-const siteUrl = 'https://www.deepeventjalandhar.com';
+const siteUrl = 'https://www.deepcateringandevents.com';
 
 const links = [
   { url: '/', changefreq: 'weekly', priority: 1 },
