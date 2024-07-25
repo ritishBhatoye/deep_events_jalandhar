@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-         xmlns:xhtml="http://www.w3.org/1999/xhtml"
-         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://www.deepcateringandevents.com/</loc>
     <changefreq>weekly</changefreq>
@@ -13,11 +10,6 @@
       <image:loc>https://www.deepcateringandevents.com/images/logo.jpg</image:loc>
       <image:title>Deep Event Jalandhar Logo</image:title>
     </image:image>
-    <xhtml:link rel="alternate" hreflang="en" href="https://deepcateringandevents.com/">
-      <xhtml:title>Best Catering, Tent, and Event Services in Jalandhar | Multicuisine Catering & Professional Event Planning</xhtml:title>
-      <xhtml:meta name="description" content="Discover the best catering services in Jalandhar with our comprehensive event planning and decoration solutions. We offer authentic South Indian, North Indian, and Punjabi cuisine, along with DJ services, tent setups, chair, and table rentals. Visit us at Main Road Dakoha near Baba Budha Ji Gurudwara for an unforgettable event experience!"/>
-      <xhtml:meta name="keywords" content="catering services Jalandhar, event planning Jalandhar, event decoration Jalandhar, DJ services Jalandhar, event organisers Jalandhar, tent rental Jalandhar, chair rental Jalandhar, table rental Jalandhar, event management Jalandhar, wedding planners Jalandhar, party organisers Jalandhar, corporate event planning Jalandhar, birthday party planning Jalandhar, best caterers in Jalandhar, top event decorators Jalandhar, South Indian catering Jalandhar, Biryani catering Jalandhar, Indian cuisine catering Jalandhar, Multicuisine catering Jalandhar, North Indian catering Jalandhar, Punjabi catering Jalandhar, fast food catering Jalandhar, sweets catering Jalandhar, Jain catering Jalandhar, snacks catering Jalandhar, vegetarian catering Jalandhar, catering service Jalandhar, furniture rental Jalandhar, event accessories Jalandhar, tent services Jalandhar, Main Road Dakoha Jalandhar, Baba Budha Ji Gurudwara Dakoha, Dakoha Railway Crossing"/>
-    </xhtml:link>
   </url>
   <url>
     <loc>https://www.deepcateringandevents.com/aboutus</loc>
