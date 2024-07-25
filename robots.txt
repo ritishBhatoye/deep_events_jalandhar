@@ -1,3 +1,4 @@
-Sitemap: https://www.deepeventjalandhar.com/sitemap.xml
 User-agent: *
 Allow: /
+
+Sitemap: https://www.deepcateringandevents.com/sitemap.xml
