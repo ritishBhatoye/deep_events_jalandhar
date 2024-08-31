@@ -1,5 +1,5 @@
 // src/components/home/Navbar.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy } from 'react';
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/deep_event_jalandhar.png";
 import { navItems } from "../../constants";
@@ -52,6 +52,8 @@ const Navbar = () => {
     }
   };
 
+  const LazyBookNowButton = lazy(() => import('./BookNowButton'));
+
   return (
     <header className="sticky top-0 z-50 w-full bg-black/50 backdrop-filter backdrop-blur-lg">
       <nav className="py-2 sm:py-3 border-b border-neutral-700/30" aria-label="Main navigation">
@@ -89,12 +91,7 @@ const Navbar = () => {
               >
                 {buttonText}
               </button>
-              <Link 
-                to="/booknow"
-                className="bg-gradient-to-r from-orange-500 to-orange-800 py-1 sm:py-2 px-2 sm:px-3 text-sm sm:text-base rounded-md transition-transform duration-300 hover:scale-105"
-              >
-                BOOK NOW
-              </Link>
+              <LazyBookNowButton />
             </div>
             <button 
               className="md:hidden flex items-center z-50"
@@ -139,13 +136,9 @@ const Navbar = () => {
                 >
                   {buttonText}
                 </button>
-                <Link 
-                  to="/booknow"
-                  className="w-full py-3 px-4 text-lg rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white text-center transition-transform duration-300 hover:scale-105"
+                <LazyBookNowButton
                   onClick={() => setMobileDrawerOpen(false)}
-                >
-                  BOOK NOW
-                </Link>
+                />
               </div>
             </div>
           )}
