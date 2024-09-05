@@ -52,7 +52,7 @@ const Navbar = () => {
     }
   };
 
-  const LazyBookNowButton = lazy(() => import('./BookNowButton'));
+  const LazyBookNowButton = lazy(() => import('../../pages/Booking'));
 
   return (
     <header className="sticky top-0 z-50 w-full bg-black/50 backdrop-filter backdrop-blur-lg">
