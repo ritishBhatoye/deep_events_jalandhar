@@ -33,13 +33,66 @@ import { Helmet } from 'react-helmet'; // Add this import for SEO
 import ThreeJSBackground from '../components/ThreeJSBackground'; // Import the ThreeJSBackground component
 
 const menuItems = [
-  { name: 'Breakfast', images: [breakfast, breakfast1, breakfast2, breakfast3, breakfast4, breakfast5, breakfast6, breakfast7, breakfast8, breakfast9, breakfast10, breakfast11, breakfast12, breakfast13], link: '/menu/breakfast' },
-  { name: 'Lunch & Dinner', images: [lunchveg1, lunchveg2], link: '/menu/lunch-dinner' },
-  { name: 'Rice', images: [rice, ricenonveg], link: '/menu/rice' },
-  { name: 'Vegetarian Snacks', images: [vegetariansnacks1, vegetariansnacks2], link: '/menu/vegetariansnacks' },
-  { name: 'Soups', images: [soup], link: '/menu/soup' },
-  { name: 'Roti', images: [roti], link: '/menu/roti' },
-  { name: 'Drinks', images: [softdrinks1, softdrinks2], link: '/menu/drinks' },
+  { 
+    name: 'Breakfast (Veg)', 
+    images: [breakfast, breakfast1, breakfast2, breakfast3, breakfast4, breakfast5, breakfast6, breakfast7, breakfast8, breakfast9, breakfast10, breakfast11, breakfast12, breakfast13], 
+    link: '/menu/breakfast',
+    items: [
+      'Chana Poori', 'Tandoori Kulcha', 'Punjabi Dhaba', 'Spring Roll', 'Potato Fingers',
+      'Mini Samosa', 'Onion Pakora', 'Gobi Pakora', 'Paneer Pakora', 'Veg Pakora',
+      'Shimla Mirch Pakora', 'Bread Pakora', 'Palak Pakora', 'Cheese Sandwich', 'Veg Sandwich'
+    ]
+  },
+  { 
+    name: 'Lunch & Dinner (Veg)', 
+    images: [lunchveg1, lunchveg2], 
+    link: '/menu/lunch-dinner',
+    items: [
+      'Kadai Paneer', 'Shahi Paneer', 'Palak Paneer', 'Mutter Paneer', 'Paneer Methi Masala',
+      'Mutter Mushroom', 'Malai Kofta', 'Palak Kofta', 'Mix Veg', 'Daal Makhani',
+      'Chana Masala', 'Dum Aaloo', 'Palak Corn', 'Mix Tawa Veg', 'Yellow Daal',
+      'Potato Chilli', 'Gobhi Chilli'
+    ]
+  },
+  { 
+    name: 'Rice', 
+    images: [rice, ricenonveg], 
+    link: '/menu/rice',
+    items: [
+      'Jeera Rice', 'Veg Pulao', 'Plain Rice', 'Jeera Mutter Rice'
+    ]
+  },
+  { 
+    name: 'Vegetarian Snacks', 
+    images: [vegetariansnacks1, vegetariansnacks2], 
+    link: '/menu/vegetariansnacks',
+    items: [
+      'Paneer Tikka', 'Paneer Seekh Kabab', 'Paneer Haryali Tikka', 'Tandoori Gobhi',
+      'Seekh Kabab', 'Mushroom Chilli', 'Cheese Chilli', 'Cheese Finger', 'Spring Roll',
+      'Manchurian', 'Potato Stuffed', 'Gobhi Tikka', 'Kachalu Tikka', 'Tawa Veg Chaap',
+      'Achari Chaap', 'Roasted Chaap', 'Garlic Chaap', 'Malai Chaap', 'Tawa Paneer Chaap',
+      'Masala Paneer Tikka', 'Tawa Mushroom Tikka', 'Masala Mushroom Tikka', 'Tawa Mushroom Tikka',
+      'Masala Mushroom Tikka', 'Pineapple Tikka', 'Veg Crispy', 'Masala Chaap'
+    ]
+  },
+  { 
+    name: 'Soups', 
+    images: [soup], 
+    link: '/menu/soup',
+    items: []  // You can add soup items here when available
+  },
+  { 
+    name: 'Roti', 
+    images: [roti], 
+    link: '/menu/roti',
+    items: []  // You can add roti items here when available
+  },
+  { 
+    name: 'Drinks', 
+    images: [softdrinks1, softdrinks2], 
+    link: '/menu/drinks',
+    items: []  // You can add drink items here when available
+  },
 ];
 
 const Menu = () => {
