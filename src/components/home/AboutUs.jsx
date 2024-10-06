@@ -16,7 +16,7 @@ const AboutUs= () => {
         <div className="flex flex-col lg:flex-row items-center">
           <div className="w-full lg:w-1/2 mb-8 lg:mb-0">
             <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl mb-2 font-light leading-tight text-orange-600"
+              className="text-3xl sm:text-4xl md:text-4xl mb-2 font-light leading-tight text-orange-600"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
